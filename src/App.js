@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Button } from 'semantic-ui-react'
+import { instanceOf } from 'prop-types';
 
 class App extends React.Component {
 
@@ -170,6 +171,72 @@ ispPalindrom = () => {
 }
 
 //========================================================================
+//  Write a JavaScript function to check whether an `input` is a string or not 
+  isString = () => {
+    let result;
+    const input = this.state.input; 
+    let inputTransform;
+    try {
+      inputTransform = JSON.parse(input); 
+    } catch (e) {
+      console.log(e);
+      inputTransform = input;
+    }
+    
+    result = (typeof inputTransform === 'string' || inputTransform instanceof String) ? 'Is string' : 'Is not string'; 
+
+    this.setState({value: result}); 
+  }
+
+//========================================================================
+//Write a JavaScript function to split a string and convert it into an array of words 
+  convertInArray = () => {
+    let result;
+    const input = this.state.input;
+    const punctuation = '!"#$%&\' ()*+,-./:;<=>?@[\\]^_`{|}~'; 
+    const regex = new RegExp('[' + punctuation + ']', 'g'); 
+
+    result = input.split(regex); 
+
+    this.setState({value: result});
+  }
+
+//========================================================================
+// Write a JavaScript function to convert a string in abbreviated form 
+
+  abreviation = () => {
+    let result;
+    const input = this.state.input;
+    const words = input.trim().split(' '); 
+
+    const firstName = words[0] + " " + words[1].charAt(0) + ".";
+    result = words.length > 1 ? firstName : words[0];  
+    
+
+    this.setState({value: result});
+  }
+
+//========================================================================
+// Write a JavaScript function to hide email addresses to protect from unauthorized user. 
+  hideEmail = () => {
+    let result;
+    const input = this.state.input;
+
+    const words = input.split(' '); 
+
+    result = words.map(word => {
+      if (word.indexOf("@") >= 0) {
+        return '***';
+      }
+  
+      return word;
+    }).join(' ');
+  
+
+    this.setState({value: result});
+  }
+
+//========================================================================
 //=======================TEMPLATE=========================================
 
   yourFuntionNameHere = () => {
@@ -199,6 +266,10 @@ ispPalindrom = () => {
         <Button size='mini' color='violet' onClick={this.replaceWithGigi} className="ui button">Replace with GIGI</Button>
         <Button size='mini' color='green' onClick={this.deleteVocals} className="ui button">Delete vocals and order</Button>
         <Button size='mini' color='yellow' onClick={this.ispPalindrom} className="ui button">Is palindrom</Button>
+        <Button size='mini' color='red' onClick={this.isString} className="ui button">Is string</Button>
+        <Button size='mini' color='orange' onClick={this.convertInArray} className="ui button">Convert In Array</Button>
+        <Button size='mini' color='purple' onClick={this.abreviation} className="ui button">Abbreviate</Button>
+        <Button size='mini' color='pink' onClick={this.hideEmail} className="ui button">Hide e-mail</Button>
 
         {this.state.value}
         </header>
