@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Button } from 'semantic-ui-react'
 import { instanceOf } from 'prop-types';
+import { tsExternalModuleReference } from '@babel/types';
 
 class App extends React.Component {
 
@@ -237,6 +238,154 @@ ispPalindrom = () => {
   }
 
 //========================================================================
+// For an random array, read a value input: 
+// a) add the input value in the begining of the array 
+
+
+addInTheBegining = () => {
+  let result;
+  const input = this.state.input;
+  let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 99, 1000, 73, 41, 13, 2, 5, 7, 89, 36, 306];
+  let cont1 = 0; 
+  let cont2 = input; 
+  let length = newArray.length; 
+  for (let i = 0; i <= length + 1; i++) {
+    cont1 = newArray[i]; 
+    newArray[i] = cont2; 
+    cont2 = cont1; 
+    console.log(newArray); 
+   } 
+  result = newArray.join(' '); 
+  this.setState({value: result});
+}
+// b) add the input value at the end of the array
+
+addAtTheEnd = () => {
+  let result;
+  const input = this.state.input;
+  let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 99, 1000, 73, 41, 13, 2, 5, 7, 89, 36, 306]; 
+  newArray[newArray.length + 1] = input; 
+  result = newArray.join(' '); 
+
+  this.setState({value: result});
+}
+// c) add the input value random in the array
+
+addOnRandomPosition = () => {
+  let result;
+  const input = this.state.input;
+  let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 99, 1000, 73, 41, 13, 2, 5, 7, 89, 36, 306];
+  let cont1 = 0; 
+  let cont2 = input; 
+  let arrayLength = newArray.length; 
+  let random = Math.floor((Math.random() * arrayLength) + 1); 
+  for (let i = random; i <= arrayLength + 1; i++) {
+    cont1 = newArray[i]; 
+    newArray[i] = cont2; 
+    cont2 = cont1; 
+   } 
+  result = newArray.join(' '); 
+
+
+  // your code. save your answer in result as string
+
+  this.setState({value: result});
+}
+
+//======================================================================== 
+// if "asc" sort asc, if "desc" sort desc 
+
+//bubble sort asc
+
+orderAsc = (array) => {
+  let length = array.length; 
+  let swapped; 
+  let max = 0; 
+  do{
+    swapped = false; 
+    for (let i = 0; i < length; i++){
+      if (array[i] > array[i +1]) {
+        max = array [i]; 
+        array[i] = array[i + 1]; 
+        array[i + 1] = max; 
+        swapped = true;  
+      }
+    }
+  } while (swapped); 
+  return array.join(' '); 
+} 
+
+orderDesc = (array) => {
+  let length = array.length; 
+  let swapped; 
+  let min = 0; 
+  do{
+    swapped = false; 
+    for (let i = 0; i < length; i++){
+      if (array[i] < array[i +1]) {
+        min = array [i]; 
+        array[i] = array[i + 1]; 
+        array[i + 1] = min; 
+        swapped = true;  
+      }
+    }
+  } while (swapped); 
+  return array.join(' '); 
+} 
+
+orderByInput = () => {
+  let result;
+  const input = this.state.input;
+ 
+  let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 99, 1000, 73, 41, 13, 2, 5, 7, 89, 36, 306];
+  result = (input.trim() === 'ASC') ? this.orderAsc(newArray)
+          :(input.trim() === 'DES') ? this.orderDesc(newArray)
+          :newArray.join(' '); 
+
+  // your code. save your answer in result as string
+
+  this.setState({value: result});
+}
+
+//========================================================================
+//delete prime elements from an array 
+isPrimeSimple = (n) => {
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      return false; 
+    }
+  }
+  return true; 
+} 
+
+deletePrimeElements = () => {
+  let result;
+  let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 5, 7, 89, 36, 306];
+  let length = newArray.length;  
+  let i = 0;
+  while (i < length) {
+    console.log(newArray.join(' '))
+    if (this.isPrimeSimple(newArray[i])) {
+      for (let j = i; j < length - 1; j++) { 
+        newArray[j] = newArray[j + 1]; 
+      }
+      newArray[length - 1] = undefined;
+      length--;
+    } else {
+      i++; 
+    } 
+  }
+  result = newArray.join(' '); 
+
+  // your code. save your answer in result as string
+
+  this.setState({value: result});
+}
+
+
+
+
+//========================================================================
 //=======================TEMPLATE=========================================
 
   yourFuntionNameHere = () => {
@@ -270,6 +419,11 @@ ispPalindrom = () => {
         <Button size='mini' color='orange' onClick={this.convertInArray} className="ui button">Convert In Array</Button>
         <Button size='mini' color='purple' onClick={this.abreviation} className="ui button">Abbreviate</Button>
         <Button size='mini' color='pink' onClick={this.hideEmail} className="ui button">Hide e-mail</Button>
+        <Button size='mini' color='blue' onClick={this.addInTheBegining} className="ui button">Add in the begining</Button>
+        <Button size='mini' color='olive' onClick={this.addAtTheEnd} className="ui button">Add in the end</Button>
+        <Button size='mini' color='violet' onClick={this.addOnRandomPosition} className="ui button">Add Random</Button>
+        <Button size='mini' color='green' onClick={this.orderByInput} className="ui button">Order by input</Button>
+        <Button size='mini' color='yellow' onClick={this.deletePrimeElements} className="ui button">Delete prime elements</Button>
 
         {this.state.value}
         </header>
