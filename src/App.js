@@ -463,9 +463,9 @@ evenInMatrix = () => {
 
 //========================================================================
 // Se considera o matrice de n linii si m coloane cu elemente de tipul numeric. 
-//Sortati elementele de pe linia X (x e input).
+//Sortati elementele de pe coloana  X (x e input).
 
-yourFuntionNameHere = () => {
+orderColumn = () => {
   let result;
   const input = this.state.input;
   const matrix = [
@@ -476,6 +476,7 @@ yourFuntionNameHere = () => {
   let length = matrix.length; 
   let swapped; 
   let max = 0; 
+  let j = input; 
   do{
     swapped = false; 
     for (let i = 0; i < length; i++){
@@ -496,22 +497,16 @@ yourFuntionNameHere = () => {
 // Se considera o matrice de n linii si m coloane cu elemente de tipul numeric. 
 //Sortati elementele de pe linia X (x e input).
 
-yourFuntionNameHere = () => {
+orderRow = () => {
   let result;
+  let result;
+  const input = this.state.input;
   const matrix = [
-                  [1, 5, 8, 20], 
-                  [4, 3, 98, 47], 
-                  [50, 25, 82, 78]
-                ]; 
-let rowLength = matrix.length; 
-let columnLenght = matrix[0].length; 
-let evenArray = []; 
-let j = input; 
-
-for (let i = 0; i <= rowLength; i++) {
- 
-}
-result = evenArray.join(' ');  
+    [1, 5, 8, 20], 
+    [4, 3, 98, 47], 
+    [50, 25, 82, 78]
+  ];  
+result = this.bubblefunction(matrix[input]);  
 
 this.setState({value: result});
 } 
@@ -557,6 +552,8 @@ this.setState({value: result});
         <Button size='mini' color='yellow' onClick={this.deletePrimeElements} className="ui button">Delete prime elements</Button>
         <Button size='mini' color='red' onClick={this.sortEven} className="ui button">Sort left even elements</Button>
         <Button size='mini' color='orange' onClick={this.evenInMatrix} className="ui button">Matrix even elements</Button>
+        <Button size='mini' color='purple' onClick={this.orderColumn} className="ui button">Order coolumn</Button>
+        <Button size='mini' color='pink' onClick={this.orderRow} className="ui button">Order Row</Button>
 
         {this.state.value}
         </header>
