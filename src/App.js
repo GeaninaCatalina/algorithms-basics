@@ -382,8 +382,139 @@ deletePrimeElements = () => {
   this.setState({value: result});
 }
 
+//======================================================================== 
+//Array harcoded. Sort asc odd values, sort all even numbers in ascending order 
+//and then sort all odd numbers in descending order 
+
+bubblefunction = (array) => {
+  let length = array.length; 
+  let swapped; 
+  let max = 0; 
+  do{
+    swapped = false; 
+    for (let i = 0; i < length; i++){
+      if (array[i] > array[i +1]) {
+        max = array [i]; 
+        array[i] = array[i + 1]; 
+        array[i + 1] = max; 
+        swapped = true;  
+      }
+    }
+  } while (swapped); 
+  return array.join(' '); 
+} 
+
+sortEven = () => {
+  let result;
+  const input = this.state.input; 
+  let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 5, 7, 89, 36, 306];
+  let length = newArray.length;  
+  let cont = 0; 
+  for (let i = 0; i <= length; i++) {
+    if (newArray[i] % 2 === 0) {
+      newArray[i] = newArray[i] * (-1); 
+      cont = cont + 1; 
+    }
+  }  
+  this.bubblefunction(newArray); 
+
+  for (let j = 0; j <= cont; j++) {
+    newArray[j] = newArray[j]*(-1); 
+  }
+  result = newArray.join(' '); 
+
+  this.setState({value: result});
+}
 
 
+//========================================================================
+//1. Se considera o matrice de n linii si m coloane cu elemente de tipul numeric. 
+//Afisati elementele pare din matrice. 
+
+isEven = (n) => { 
+  if (n % 2 === 0) {
+    return true; 
+  } 
+} 
+
+evenInMatrix = () => {
+  let result;
+  const input = this.state.input;
+  const matrix = [
+                  [1, 5, 8, 20], 
+                  [4, 3, 98, 47], 
+                  [50, 25, 82, 78]
+                ]; 
+  let rowLength = matrix.length; 
+  let columnLenght = matrix[0].length; 
+  let evenArray = []; 
+
+  for (let i = 0; i <= rowLength; i++) {
+    for (let j = 0; j<= columnLenght; j++){
+      if (this.isEven(matrix[i][j] === true)) {
+        evenArray[j] = matrix[i][j]; 
+      }
+    }
+  }
+  result = evenArray.join(' ');  
+
+   this.setState({value: result});
+} 
+
+//========================================================================
+// Se considera o matrice de n linii si m coloane cu elemente de tipul numeric. 
+//Sortati elementele de pe linia X (x e input).
+
+yourFuntionNameHere = () => {
+  let result;
+  const input = this.state.input;
+  const matrix = [
+    [1, 5, 8, 20], 
+    [4, 3, 98, 47], 
+    [50, 25, 82, 78]
+  ];  
+  let length = matrix.length; 
+  let swapped; 
+  let max = 0; 
+  do{
+    swapped = false; 
+    for (let i = 0; i < length; i++){
+     if (matrix[i][j]> matrix[i +1][j]) {
+        max = matrix[i][j]; 
+        array[i][j] = array[i + 1][j]; 
+        array[i + 1][j] = max; 
+        swapped = true;  
+      }
+    }
+  } while (swapped); 
+   
+  result = matrix; 
+  this.setState({value: result});
+}
+
+//========================================================================
+// Se considera o matrice de n linii si m coloane cu elemente de tipul numeric. 
+//Sortati elementele de pe linia X (x e input).
+
+yourFuntionNameHere = () => {
+  let result;
+  const matrix = [
+                  [1, 5, 8, 20], 
+                  [4, 3, 98, 47], 
+                  [50, 25, 82, 78]
+                ]; 
+let rowLength = matrix.length; 
+let columnLenght = matrix[0].length; 
+let evenArray = []; 
+let j = input; 
+
+for (let i = 0; i <= rowLength; i++) {
+ 
+}
+result = evenArray.join(' ');  
+
+this.setState({value: result});
+} 
 
 //========================================================================
 //=======================TEMPLATE=========================================
@@ -424,6 +555,8 @@ deletePrimeElements = () => {
         <Button size='mini' color='violet' onClick={this.addOnRandomPosition} className="ui button">Add Random</Button>
         <Button size='mini' color='green' onClick={this.orderByInput} className="ui button">Order by input</Button>
         <Button size='mini' color='yellow' onClick={this.deletePrimeElements} className="ui button">Delete prime elements</Button>
+        <Button size='mini' color='red' onClick={this.sortEven} className="ui button">Sort left even elements</Button>
+        <Button size='mini' color='orange' onClick={this.evenInMatrix} className="ui button">Matrix even elements</Button>
 
         {this.state.value}
         </header>
