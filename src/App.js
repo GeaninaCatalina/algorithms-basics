@@ -28,8 +28,6 @@ class App extends React.Component {
 
   yourFuntionNameHere = () => {
     let result;
-    const input = this.state.input;
-
     // your code. save your answer in result as string
 
     this.setState({value: result});

@@ -3,10 +3,6 @@ import { Button } from 'semantic-ui-react';
 
 class PhaseOne extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   isPrime = () => {
     let result;
     const n = this.props.input;
@@ -102,26 +98,6 @@ class PhaseOne extends React.Component {
     }).join(' ');
 
     this.props.callBack(result);;
-  }
-
-  exemple = () => {
-    const om1 = { name: 'dan', age: 18, cnp: '123456afsdsg'};
-    const om2 = { name: 'ge', age: 14, cnp: '123456easedfs'};
-    const om3 = { name: 'al', age: 11, cnp: '123456sdgfrdf'};
-    const om4 = { name: 'ttr', age: 20, cnp: '123456dsfgfd'};
-
-    const oameni = [om1, om2, om3, om4];
-
-    // doar cnp-ul oamenilor majori
-
-    const grownUps = oameni.filter(om => om.age >= 18)
-          .map(om => om.cnp);
-
-    // doar numele oamenilor majori in ordine alfabetica
-
-    const people = oameni.filter(om => om.age >= 18)
-                        .map(om => om.name)
-                        .sort((om1, om2) => om1.name < om2.name);
   }
 
   //========================================================================
@@ -293,7 +269,7 @@ class PhaseOne extends React.Component {
       swapped = false; 
       for (let i = 0; i < length; i++){
         if (array[i] > array[i +1]) {
-          max = array [i]; 
+          max = array[i]; 
           array[i] = array[i + 1]; 
           array[i + 1] = max; 
           swapped = true;  
@@ -311,7 +287,7 @@ class PhaseOne extends React.Component {
       swapped = false; 
       for (let i = 0; i < length; i++){
         if (array[i] < array[i +1]) {
-          min = array [i]; 
+          min = array[i]; 
           array[i] = array[i + 1]; 
           array[i + 1] = min; 
           swapped = true;  
@@ -382,7 +358,7 @@ class PhaseOne extends React.Component {
       swapped = false; 
       for (let i = 0; i < length; i++){
         if (array[i] > array[i +1]) {
-          max = array [i]; 
+          max = array[i]; 
           array[i] = array[i + 1]; 
           array[i + 1] = max; 
           swapped = true;  
@@ -396,7 +372,6 @@ class PhaseOne extends React.Component {
 
   sortEven = () => {
     let result;
-    const input = this.props.input; 
     let newArray = [1, 2, 3, 45, 12, 1518, 89, 23, 78, 55, 5, 7, 89, 36, 306];
     let length = newArray.length;  
     let cont = 0; 
@@ -498,7 +473,7 @@ class PhaseOne extends React.Component {
 
     this.bubbleFunctionAsc(matrix[input]);  
     result = JSON.stringify(matrix); 
-  this.props.callBack(result);;
+    this.props.callBack(result);;
   } 
 
   //========================================================================
@@ -507,7 +482,6 @@ class PhaseOne extends React.Component {
 
   diagonalsOfMatrix = () => {
     let result;
-    const input = this.props.input;
     const matrix = [
       [1, 5, 8, 20], 
       [4, 3, 98, 47], 

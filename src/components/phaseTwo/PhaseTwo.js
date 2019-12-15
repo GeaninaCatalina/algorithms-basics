@@ -3,10 +3,6 @@ import { Button } from 'semantic-ui-react';
 //import { maxHeaderSize } from 'http';
 
 class PhaseTwo extends React.Component {
-
-  constructor(props) {
-    super(props);
-  } 
   //5. Se considera o matrice de n linii si n coloane cu elemente de tipul string. se cere:
  //a) inlocuiti numerele cu "secret" 
 
@@ -61,7 +57,6 @@ class PhaseTwo extends React.Component {
  //c) inlocuiti cuvintele proprii cu "Voldermort" 
   replaceWithVoldermort = () => {
     let result;
-    const input = this.props.input;
     let matrix = [
       ['poate', 'merge', 'max'], 
       ['USA', 'blabla', 'Mamy' ], 
