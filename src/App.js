@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react';
 import PhaseOne from './components/phaseOne/PhaseOne';
 import PhaseTwo from './components/phaseTwo/PhaseTwo';
 import TicTacToe from './components/tictactoe/TicTacToe';
+import OrderArray from './components/orderarray/OrderArray';
 
 class App extends React.Component {
 
@@ -49,15 +50,14 @@ class App extends React.Component {
               <PhaseTwo input={this.state.input} callBack={this.callBack}></PhaseTwo>
             </Grid.Column> 
             <Grid.Column>
-              <TicTacToe input={this.state.input} callBack={this.callBack}></TicTacToe>
+              <TicTacToe input={this.state.input} callBack={this.callBack}></TicTacToe> 
+              <OrderArray input={this.state.input} callBack={this.callBack}></OrderArray>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row centered>
             {this.state.value}
           </Grid.Row>
         </Grid>
-        
-        
         </header>
       </div>
   );
