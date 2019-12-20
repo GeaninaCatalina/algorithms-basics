@@ -5,6 +5,7 @@ import PhaseOne from './components/phaseOne/PhaseOne';
 import PhaseTwo from './components/phaseTwo/PhaseTwo';
 import TicTacToe from './components/tictactoe/TicTacToe';
 import OrderArray from './components/orderarray/OrderArray';
+import Gomoku from './components/gomoku/Gomoku'; 
 
 class App extends React.Component {
 
@@ -51,6 +52,7 @@ class App extends React.Component {
             </Grid.Column> 
             <Grid.Column>
               <TicTacToe input={this.state.input} callBack={this.callBack}></TicTacToe> 
+              <Gomoku input={this.state.input} callBack={this.callBack}></Gomoku> 
               <OrderArray input={this.state.input} callBack={this.callBack}></OrderArray>
             </Grid.Column>
           </Grid.Row>
