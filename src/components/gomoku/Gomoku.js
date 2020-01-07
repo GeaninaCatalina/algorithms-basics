@@ -101,6 +101,84 @@ class Gomoku extends React.Component {
 
     return true;
   } 
+
+  generateAIMoves = (array) => {
+    let table = [];
+    for (let i = 0; i < length.array; i++) {
+      table.push([]);
+      for (let j = 0; j < length.array[0]; j++) {
+        table[i].push(0);
+      }
+    } 
+    for (let i = 0; i < 20; i++){
+      for (let j = 0; j < 0; j++){
+        if (array[i][j] === true){ 
+          try {
+            table[i][j] === table[i][j] + 1;
+            //up on row 
+            table[i][j-1] === table[i][j-1] + 1;
+            table[i][j-2] === table[i][j-2] + 1;
+            table[i][j-3] === table[i][j-3] + 1;
+            table[i][j-4] === table[i][j-4] + 1; 
+            //down on row
+            table[i][j+1] === table[i][j+1] + 1;
+            table[i][j+2] === table[i][j+2] + 1;
+            table[i][j+3] === table[i][j+3] + 1;
+            table[i][j+4] === table[i][j+4] + 1; 
+            //right 
+            table[i+1][j] === table[i+1][j] + 1;
+            table[i+2][j] === table[i+2][j] + 1;
+            table[i+3][j] === table[i+3][j] + 1;
+            table[i+4][j] === table[i+4][j] + 1; 
+            //left 
+            table[i-1][j] === table[i-1][j] + 1;
+            table[i-2][j] === table[i-2][j] + 1;
+            table[i-3][j] === table[i-3][j] + 1;
+            table[i-4][j] === table[i-4][j] + 1;  
+            //main diagonal up
+            table[i-1][j-1] === table[i-1][j-1] + 1;
+            table[i-2][j-2] === table[i-2][j-2] + 1;
+            table[i-3][j-3] === table[i-3][j-3] + 1;
+            table[i-4][j-4] === table[i-4][j-4] + 1;  
+            //main diagonal down 
+            table[i+1][j+1] === table[i+1][j+1] + 1;
+            table[i+2][j+2] === table[i+2][j+2] + 1;
+            table[i+3][j+3] === table[i+3][j+3] + 1;
+            table[i+4][j+4] === table[i+4][j+4] + 1;  
+            //secundary diagonal up
+            table[i+1][j-1] === table[i+1][j-1] + 1;
+            table[i+2][j-2] === table[i+2][j-2] + 1;
+            table[i+3][j-3] === table[i+3][j-3] + 1;
+            table[i+4][j-4] === table[i+4][j-4] + 1;  
+            //secundary diagonal down
+            table[i-1][j+1] === table[i-1][j+1] + 1;
+            table[i-2][j+2] === table[i-2][j+2] + 1;
+            table[i-3][j+3] === table[i-3][j+3] + 1;
+            table[i-4][j+4] === table[i-4][j+4] + 1;  
+          } catch (e) {
+            console.log(e); 
+          }
+         
+        }
+      }
+    } 
+    
+  }  
+
+  checkHeatMapPosition = (array) =>{
+    let max = 0; 
+    let row = 0; 
+    let col = 0; 
+    for (let i = 0; i < length.array; i++){
+      for (let j = 0; j < length.array[0]; j++){
+        if (array[i][j] > max){
+          max = array[i][j]; 
+          row = i; 
+          col = j; 
+        }
+  }
+
+
    
   render() {
     return (
