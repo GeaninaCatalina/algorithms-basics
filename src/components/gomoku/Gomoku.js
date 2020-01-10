@@ -102,17 +102,19 @@ class Gomoku extends React.Component {
     return true;
   } 
 
-  generateAIMoves = (array) => {
+  generateAIMoves = (array, player) => {
     let table = [];
-    for (let i = 0; i < array.length(); i++) {
+    for (let i = 0; i < 20; i++) {
       table.push([]);
-      for (let j = 0; j < array[0].length(); j++) {
+      for (let j = 0; j < 20; j++) {
         table[i].push(0);
       }
     } 
-    for (let i = 0; i < 20; i++){
-      for (let j = 0; j < 20; j++){
-        if (array[i][j] === true){ 
+    console.log(array1);
+    console.log(player); 
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 20; j++) {
+        if (array[i][j] === player) { 
           try {
             table[i][j] = table[i][j] + 1;
             //up on row 
@@ -162,7 +164,8 @@ class Gomoku extends React.Component {
         }
       }
     } 
-    console.log(table.join(' '))
+    console.log(table);
+    return table; 
     
   }  
 
@@ -170,15 +173,17 @@ class Gomoku extends React.Component {
     let max = 0; 
     let row = 0; 
     let col = 0; 
-    for (let i = 0; i < array.length(); i++){
-      for (let j = 0; j < array[0].length(); j++){
-        if (array[i][j] > max){
-          max = array[i][j]; 
+    for (let i = 0; i < array.length; i++){
+      for (let j = 0; j < array[0].length; j++){
+        if (array[i][j].length > max){
+          max = array[i][j].length; 
           row = i; 
           col = j; 
         }
       }
-    }   
+    } 
+    console.log(max); 
+    return [row, col]; 
   }
    
 

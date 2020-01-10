@@ -14,16 +14,18 @@
 
 
 generateAIMoves = (array) => {
-    let table = [];
-    for (let i = 0; i < array.lenght; i++) {
-      table.push([]);
-      for (let j = 0; j < array[0].lenght; j++) {
-        table[i].push(0);
-      }
-    } 
+  let table = [];
+  for (let i = 0; i < 20; i++) {
+    table.push([]);
+    for (let j = 0; j < 20; j++) {
+      table[i].push('');
+    }
+  } 
+    console.log(array);
+    console.log(table); 
     for (let i = 0; i < 20; i++){
       for (let j = 0; j < 20; j++){
-        if (array[i][j] === true){ 
+        if (array[i][j] !=''){ 
           try {
             table[i][j] = table[i][j] + 1;
             //up on row 
