@@ -11,21 +11,20 @@
    array1[10][13] = true; 
    array1[11][12] = true; 
 
+let player1 = true; 
 
+   generateAIMoves = (array, player) => {
+    let table = [];
+    for (let i = 0; i < 20; i++) {
+      table.push([]);
+      for (let j = 0; j < 20; j++) {
+        table[i].push(0);
+      }
+    } 
 
-generateAIMoves = (array) => {
-  let table = [];
-  for (let i = 0; i < 20; i++) {
-    table.push([]);
-    for (let j = 0; j < 20; j++) {
-      table[i].push('');
-    }
-  } 
-    console.log(array);
-    console.log(table); 
-    for (let i = 0; i < 20; i++){
-      for (let j = 0; j < 20; j++){
-        if (array[i][j] !=''){ 
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 20; j++) {
+        if (array[i][j] === player) { 
           try {
             table[i][j] = table[i][j] + 1;
             //up on row 
@@ -75,6 +74,42 @@ generateAIMoves = (array) => {
         }
       }
     } 
-    console.log(table.join(''))
+   return table; 
     
+  }  
+
+  checkValidPosition = (array, table) =>{
+    let max = 0; 
+    let row = 0; 
+    let col = 0; 
+    let found = false; 
+    while (found === false){
+      for (let i = 0; i < array.length; i++){
+        for (let j = 0; j < array[0].length; j++){
+          if (array[i][j].length > max){
+            max = array[i][j].length; 
+            row = i; 
+            col = j; 
+          }
+        }
+      }  
+      if (table[row][col] === '') {
+        found = true; 
+        return [row, col]; 
+        console.log([row, col]); 
+        console.log (max); 
+      }
+    }
+    
+  }
+   while (!this.gameShouldEnd(table)) {
+    console.log(table); 
+    currentPlayer = !currentPlayer;
+    let oponent = false;
+    if (currentPlayer === true) {  
+      const positions = this.checkValidPosition(this.generateAIMoves(table, oponent), table);
+    } else {
+      const positions = this.generateMove(table); 
+    }      
+    table[positions[0]][positions[1]] = currentPlayer;
   } 

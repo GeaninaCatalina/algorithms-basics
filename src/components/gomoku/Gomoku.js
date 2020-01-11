@@ -17,14 +17,19 @@ class Gomoku extends React.Component {
     } 
 
     while (!this.gameShouldEnd(table)) {
-      console.log(table); 
       currentPlayer = !currentPlayer;
-      const positions = this.generateMove(table);
+      let positions;
+      if ( currentPlayer === true ) {  
+        positions = this.checkValidPosition(this.generateAIMoves(table, !currentPlayer), table);
+      } else {
+        positions = this.generateMove(table); 
+      }      
       table[positions[0]][positions[1]] = currentPlayer;
     } 
 
     console.log("after"); 
     console.log(table); 
+    
     const winner = currentPlayer ? input.split(' ')[0] : input.split(' ')[1];
     result = this.isWinningCondition(table) ? 'The winner is player: ' + winner : 'There is no winner';
     this.props.callBack(result);
@@ -58,6 +63,7 @@ class Gomoku extends React.Component {
             array[i][j+2] = 'win'; 
             array[i][j+3] = 'win'; 
             array[i][j+4] = 'win'; 
+
             return true; 
           } else if (array[i][j] === array[i+1][j] && array[i+1][j] === array[i+2][j] && array[i+2][j] === array[i+3][j] && array[i+3][j] === array[i+4][j]) { 
             array[i][j] = 'win'; 
@@ -65,13 +71,15 @@ class Gomoku extends React.Component {
             array[i+2][j] = 'win'; 
             array[i+3][j] = 'win'; 
             array[i+4][j] = 'win'; 
+
             return true;  
-          } else if (array[i][j] === array[i+1][j-1] && array[i+1][j-1] === array[i+2][j-2] && array[i+2][j-2] === array[i+3][j-3] && array[i+3][j-3] === array[i+4][j-4]){
+          } else if (array[i][j] === array[i+1][j-1] && array[i+1][j-1] === array[i+2][j-2] && array[i+2][j-2] === array[i+3][j-3] && array[i+3][j-3] === array[i+4][j-4]) {
             array[i][j] = 'win'; 
             array[i+1][j-1] = 'win'; 
             array[i+2][j-2] = 'win'; 
             array[i+3][j-3] = 'win';
             array[i+4][j-4] = 'win';
+
             return true; 
           } else if (array[i][j] === array[i+1][j+1] && array[i+1][j+1] === array[i+2][j+2] && array[i+2][j+2] === array[i+3][j+3] && array[i+3][j+3] === array[i+4][j+4]) {
             array[i][j] = 'win'; 
@@ -79,6 +87,7 @@ class Gomoku extends React.Component {
             array[i+2][j+2] = 'win';
             array[i+3][j+3] = 'win';
             array[i+4][j+4] = 'win';
+
             return true; 
           }
         } catch (e) {
@@ -110,11 +119,10 @@ class Gomoku extends React.Component {
         table[i].push(0);
       }
     } 
-    console.log(array1);
-    console.log(player); 
+
     for (let i = 0; i < 20; i++) {
       for (let j = 0; j < 20; j++) {
-        if (array[i][j] === player) { 
+        if ( array[i][j] === player ) { 
           try {
             table[i][j] = table[i][j] + 1;
             //up on row 
@@ -158,37 +166,31 @@ class Gomoku extends React.Component {
             table[i-3][j+3] = table[i-3][j+3] + 1;
             table[i-4][j+4] = table[i-4][j+4] + 1;  
           } catch (e) {
-            console.log(e); 
           }
-         
         }
       }
     } 
-    console.log(table);
-    return table; 
-    
+
+   return table; 
   }  
 
-  checkHeatMapPosition = (array) =>{
+  checkValidPosition = (array, table) => {
     let max = 0; 
     let row = 0; 
     let col = 0; 
-    for (let i = 0; i < array.length; i++){
-      for (let j = 0; j < array[0].length; j++){
-        if (array[i][j].length > max){
-          max = array[i][j].length; 
+    for (let i = 0; i < 20; i++) {
+      for (let j = 0; j < 20; j++) {
+        if (array[i][j] > max && table[i][j] === '') {
+          max = array[i][j]; 
           row = i; 
           col = j; 
         }
       }
-    } 
-    console.log(max); 
-    return [row, col]; 
+    }    
+    return [row, col];  
   }
    
-
-
-   
+ 
   render() {
     return (
         <div>
