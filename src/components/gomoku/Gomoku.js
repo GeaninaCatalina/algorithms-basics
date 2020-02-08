@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import { array } from 'prop-types';
+
 
 class Gomoku extends React.Component { 
 

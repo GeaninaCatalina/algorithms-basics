@@ -18,9 +18,9 @@ class OrderArray extends React.Component {
     let result; 
           
     for (let i = 0; i < matrix.length; i++) {
-      if (matrix[i][matrix.length] % 2 === 0 && matrix[i][matrix.length] != 0) {
+      if (matrix[i][matrix.length] % 2 === 0 && matrix[i][matrix.length] !== 0) {
         this.orderAsc(matrix[i]); 
-      } else if(matrix[i][matrix.length] % 2 === 1 && matrix[i][matrix.length] != 0) {
+      } else if(matrix[i][matrix.length] % 2 === 1 && matrix[i][matrix.length] !== 0) {
         this.orderDesc(matrix[i]); 
       } else if (matrix[i][0] === 0 || matrix[i][matrix.length - 1] === 0) {
         for (let j = 0; j < matrix[i].length; j++) {
