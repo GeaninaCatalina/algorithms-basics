@@ -70,7 +70,7 @@ class Matrix extends React.Component {
 
     
 
-
+  }
   render () {
     return (
     <div>
