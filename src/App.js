@@ -11,6 +11,7 @@ import Matrix from './components/matrix/Matrix';
 class App extends React.Component {
 
   constructor(props) {
+    console.log('test')
     super(props);
     this.state = {
       value: '',
