@@ -42,7 +42,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Geanina's playgorund !</h1>
+          <h1>Playground</h1>
         <div className="ui input"><input type="text" placeholder="" onChange={this.setInput}/></div>
         
         <p></p>
